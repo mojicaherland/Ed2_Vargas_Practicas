@@ -276,4 +276,11 @@ public class Lista {
             }
         }
     }
+
+    /* LAB 3. Mas sobre listas en arreglos --> Jueves(21/03/2024)* CHECK/
+    /*1. L1.insertarIesimo(x, i) : Método que inserta el elemento x, en la posición i, de la lista L1.
+    *2. L1.insertarPrim(x) : Método que insertar el elemento x, al inicio de la lista L1.
+    *3. L1.insertarUlt(x) : Método que inserta el elemento x, al final de la lista L1.
+    * */
+
 }

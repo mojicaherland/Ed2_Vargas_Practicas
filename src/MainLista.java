@@ -8,6 +8,9 @@ public class MainLista {
         lista.insertarIesimo(30, 1);
         lista.insertarIesimo(20, 2);
         lista.insertarIesimo(10, 3);
+        lista.insertarIesimo(5, 4);
+        lista.insertarIesimo(1, 5);
+
         System.out.println("Lista 1: " + lista.toString());
 
         lista2.insertarIesimo(10, 0);
@@ -19,7 +22,7 @@ public class MainLista {
         listaPrueba.pasarDigitos(546781);
         System.out.println("Lista Prueba: " + listaPrueba.toString());
 
-        System.out.println(lista.parImpar());
-
+        lista.dividirLista(1,3);
+        System.out.println(lista.toString());
     }
 }

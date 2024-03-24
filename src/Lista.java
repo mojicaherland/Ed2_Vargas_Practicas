@@ -417,4 +417,39 @@ public class Lista {
     //13. L1.mismaFrec() : Método lógico que devuelve True,
     // si todos los elementos tienen la misma frecuencia de aparición en la Lista L1.
 
+
+    //Tarea2 --> es lo mismo que el lab 3 pero incluyendo 10 ejercicios de libros
+
+    //1.Obtener por posicion : Devuelve el elemento en una posicion especifica
+    public int obtenerDatoPosicion(int i) {
+        int dato = 0, j = 0;
+        while (j < this.cantElem) {
+            if (i == j){
+                dato = this.arreglo[j];
+            }
+            j++;
+        }
+        return dato;
+    }
+    //Dividir una lista en tres: Crea un metodo que divida una lista en tres,
+    // basandose en dos indices dados
+    public void dividirLista(int i, int j) {
+        Lista l1 = new Lista(10);
+        Lista l2 = new Lista(10);
+        Lista l3 = new Lista(10);
+        int k = 0;
+        while (k < this.cantElem) {
+            if (k < i) {
+                l1.insertarUltimo(this.arreglo[k]);
+            } else if (k >= i && k < j) {
+                l2.insertarUltimo(this.arreglo[k]);
+            } else {
+                l3.insertarUltimo(this.arreglo[k]);
+            }
+            k++;
+        }
+        System.out.println("Lista 1: " + l1.toString());
+        System.out.println("Lista 2: " + l2.toString());
+        System.out.println("Lista 3: " + l3.toString());
+    }
 }

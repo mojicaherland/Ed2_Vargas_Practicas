@@ -200,78 +200,83 @@ public class Lista {
     /* TAREA1. Listas en arreglo --> Lunes(18/03/2024) --> YA HECHOS */
 
     /*1. L1.insertarIesimo(x, i) : Método que inserta el elemento x, en la posición i, de la lista L1.
-    *2. L1.insertarPrim(x) : Método que insertar el elemento x, al inicio de la lista L1.
-    *3. L1.insertarUlt(x) : Método que inserta el elemento x, al final de la lista L1.
-    *4. L1.eliminarIesimo(i) : Método que elimina el elemento de la posición i.
-    *5. L1.eliminarPrim() : Método que elimina el elemento de la primer posición.
-    *6. L1.eliminarUlt() : Método que elimina el último elemento de la lista L1.
-    *8. L1.eliminarTodo( x ) : Método que elimina todos los elementos x de la lista L1.
-    *8. L1.eliminarPares() : Método que elimina los elementos pares de la lista L1. Verificar en listas dónde todos los elementos sean pares.
-    *9. L1.eliminarUnicos() : Método que elimina los elementos que aparecen solo una vez en la lista L1.
-    *10. L1.eliminarTodo(L2) : Método que elimina todos los elementos de la lista L1, que aparecen en la lista L2.
-    *11. L1.pasarDigitos( n ) : Método que pasa los dígitos del entero n, a la Lista L1. Ejemplo: Si n = 546781, L1 = []. El resultado es L1 = [5, 4, 6, 7, 8, 1]
-    *12. L1.rotarIzqDer( n ) : Método que hace rotar los elementos de la lista L1 n-veces de izquierda a derecha. Sugerencia, utilizar los métodos de insertar y eleminar por los extremos de la Lista.
-    *13. L1.rotarDerIzq( n ) : Método que hace rotar los elementos de la lista L1 n-veces de derecha a izquierda.
-    *14. L1.eliminarPrim( n ) : Método que eliminar los primeros n-elementos de la lista L1.
-    *15. L1.eliminarUlt( n ) : Método que elimina los n-últimos elementos de la lista L1
-    *16. L1.insertarIesimo(L2, i) : Método que insertar los elementos de la lista L2 en la lista L1, desde la posición i.
-    * */
+     *2. L1.insertarPrim(x) : Método que insertar el elemento x, al inicio de la lista L1.
+     *3. L1.insertarUlt(x) : Método que inserta el elemento x, al final de la lista L1.
+     *4. L1.eliminarIesimo(i) : Método que elimina el elemento de la posición i.
+     *5. L1.eliminarPrim() : Método que elimina el elemento de la primer posición.
+     *6. L1.eliminarUlt() : Método que elimina el último elemento de la lista L1.
+     *8. L1.eliminarTodo( x ) : Método que elimina todos los elementos x de la lista L1.
+     *8. L1.eliminarPares() : Método que elimina los elementos pares de la lista L1. Verificar en listas dónde todos los elementos sean pares.
+     *9. L1.eliminarUnicos() : Método que elimina los elementos que aparecen solo una vez en la lista L1.
+     *10. L1.eliminarTodo(L2) : Método que elimina todos los elementos de la lista L1, que aparecen en la lista L2.
+     *11. L1.pasarDigitos( n ) : Método que pasa los dígitos del entero n, a la Lista L1. Ejemplo: Si n = 546781, L1 = []. El resultado es L1 = [5, 4, 6, 7, 8, 1]
+     *12. L1.rotarIzqDer( n ) : Método que hace rotar los elementos de la lista L1 n-veces de izquierda a derecha. Sugerencia, utilizar los métodos de insertar y eleminar por los extremos de la Lista.
+     *13. L1.rotarDerIzq( n ) : Método que hace rotar los elementos de la lista L1 n-veces de derecha a izquierda.
+     *14. L1.eliminarPrim( n ) : Método que eliminar los primeros n-elementos de la lista L1.
+     *15. L1.eliminarUlt( n ) : Método que elimina los n-últimos elementos de la lista L1
+     *16. L1.insertarIesimo(L2, i) : Método que insertar los elementos de la lista L2 en la lista L1, desde la posición i.
+     * */
 
     //17. L1.insertarPrim(L2) : Método que insertar los elementos de la lista L2 al principio de la lista L1.
-    public void insertarPrim(Lista l2){
+    public void insertarPrim(Lista l2) {
         int i = 0;
-        while (i < l2.cantElem){
+        while (i < l2.cantElem) {
             this.insertarPrimero(l2.arreglo[i]);
             i++;
         }
     }
+
     //18. L1.insertarUlt(L2) : Método que insertar los elementos de la lista L2 al final de la lista L1.
-    public void insertarUlt(Lista l2){
+    public void insertarUlt(Lista l2) {
         int i = 0;
-        while (i < l2.cantElem){
+        while (i < l2.cantElem) {
             this.insertarUltimo(l2.arreglo[i]);
             i++;
         }
     }
+
     //19. L1.eliminarIesimo(i, n) : Método que elimina los n-elementos de la lista L1, desde la posición i.
-    public void eliminarIesimo(int i,int n){
-        while (n > 0){
+    public void eliminarIesimo(int i, int n) {
+        while (n > 0) {
             this.eliminarIesimo(i);
             n--;
         }
     }
+
     //20. L1.eliminarExtremos( n ) : Método que eliminar la n-elementos de los extremos de la lista L1.
-    public void eliminarExtremos(int n){
-        while (n > 0){
+    public void eliminarExtremos(int n) {
+        while (n > 0) {
             this.eliminarPrimero();
             this.eliminarUltimo();
             n--;
         }
     }
+
     //21. L1.eliminarVeces(k) : Método que elimina los elementos que se repiten k-veces en la lista L1.
-    public void eliminarVeces(int k){
+    public void eliminarVeces(int k) {
         int i = 0;
-        while (i < this.cantElem){
+        while (i < this.cantElem) {
             int contador = 0;
-            for (int j = 0; j < this.cantElem; j++){
-                if (this.arreglo[i] == this.arreglo[j]){
+            for (int j = 0; j < this.cantElem; j++) {
+                if (this.arreglo[i] == this.arreglo[j]) {
                     contador++;
                 }
             }
-            if (contador == k){
+            if (contador == k) {
                 this.eliminarTodo(this.arreglo[i]);
-            }else{
+            } else {
                 i++;
             }
         }
     }
+
     //22. L1.eliminarAlternos() : Método que elimina los elementos de las posiciones alternas. (permanece, se elimina, permanece, se elimina, etc.)
-    public void eliminarAlternos(){ //CORREGIR
+    public void eliminarAlternos() { //CORREGIR
         int i = 0;
-        while(i < this.cantElem){
-            if (i% 2 == 1){
+        while (i < this.cantElem) {
+            if (i % 2 == 1) {
                 this.eliminarIesimo(i);
-            }else{
+            } else {
                 i++;
             }
         }
@@ -282,5 +287,134 @@ public class Lista {
     *2. L1.insertarPrim(x) : Método que insertar el elemento x, al inicio de la lista L1.
     *3. L1.insertarUlt(x) : Método que inserta el elemento x, al final de la lista L1.
     * */
+
+    //4. L1.insertarLugasAsc(x) : Método que inserta el elemento x,
+    // en su lugar correspondiente en la Lista L1, ordenada de menor a mayor.
+    public void insertarLugarAsc(int x) {
+        int i = 0;
+        while (i < this.cantElem && this.arreglo[i] < x) {
+            i++;
+        }
+        this.insertarIesimo(x, i);
+    }
+
+    //5. L1.insertarLugasDesc(x) : Método que inserta el elemento x,
+    // en su lugar correspondiente en la Lista L1, ordenada de mayor a menor.
+    public void insertarLugarDesc(int x) {
+        int i = 0;
+        while (i < this.cantElem && this.arreglo[i] > x) {
+            i++;
+        }
+        this.insertarIesimo(x, i);
+    }
+
+    //6. L1.comunes(L2, L3) : Método que encuentra en L1,
+    // los elementos comunes en las Listas L2, L3.
+    public void comunes(Lista l2, Lista l3) {
+        for (int i = 0; i < l2.cantElem; i++) {
+            for (int j = 0; j < l3.cantElem; j++) {
+                if (l2.arreglo[i] == l3.arreglo[j]) {
+                    System.out.println(l2.arreglo[i]);
+                }
+            }
+        }
+    }
+
+    //7. L1.intercalar(L2, L3) : Método que encuentra en L1,
+    // los elementos intercalados de las Listas L2 y L3.
+    public void intercalar(Lista l2, Lista l3) {
+        int i = 0;
+        int j = 0;
+        while (i < l2.cantElem && j < l3.cantElem) {
+            this.insertarUltimo(l2.arreglo[i]);
+            this.insertarUltimo(l3.arreglo[j]);
+            i++;
+            j++;
+        }
+        while (i < l2.cantElem) {
+            this.insertarUltimo(l2.arreglo[i]);
+            i++;
+        }
+        while (j < l3.cantElem) {
+            this.insertarUltimo(l3.arreglo[j]);
+            j++;
+        }
+    }
+
+    //8. L1.ordenado() : Método lógico que devuelve True,
+    // si los elementos de la lista L1, están ordenados en forma ascendente o descendente.
+    public void ordenado() {
+        boolean asc = false;
+        boolean desc = false;
+        for (int i = 0; i < this.cantElem - 1; i++) {
+            if (this.arreglo[i] < this.arreglo[i + 1]) {
+                asc = true;
+            }
+            if (this.arreglo[i] > this.arreglo[i + 1]) {
+                desc = true;
+            }
+        }
+        if (asc) {
+            System.out.println("Lista Ordenada Ascendemente");
+        }
+        if (desc) {
+            System.out.println("Lista Ordenada Descendemente");
+        }
+    }
+
+    //9. L1.iguales() : Método lógico que devuelve True,
+    // si todos los elementos de la lista L1, son iguales.
+    public boolean iguales() {
+        boolean igual = false;
+        for (int i = 0; i < this.cantElem - 1; i++) {
+            if (this.arreglo[i] == this.arreglo[i + 1]) {
+                igual = true;
+            }
+        }
+        return igual;
+    }
+
+    //10. L1.diferentes() : Método lógico que devuelve True,
+    // si todos los elementos de la lista L1, son diferentes.
+    public boolean diferentes() {
+        boolean dif = false;
+        for (int i = 0; i < this.cantElem - 1; i++) {
+            if (this.arreglo[i] != this.arreglo[i + 1]) {
+                dif = true;
+            }
+        }
+        return dif;
+    }
+
+    //11. L1.menor() : Método que devuelve el menor elemento de la Lista L1.
+    public int menor() {
+        int menor = this.arreglo[0];
+        for (int i = 0; i < this.cantElem; i++) {
+            if (this.arreglo[i] < menor) {
+                menor = this.arreglo[i];
+            }
+        }
+        return menor;
+    }
+
+    //12. L1.parImpar() : Método lógico que devuelve True, en la Lista L1,
+    // existe al menos un elemento par y al menor un elemento impar.
+    public boolean parImpar() {
+        boolean encontradoPar = false;
+        boolean encontradoImpar = false;
+        for (int i = 0; i < this.cantElem; i++) {
+            if (this.arreglo[i] % 2 == 0) {
+                encontradoPar = true;
+            } else {
+                encontradoImpar = true;
+            }
+            if (encontradoPar && encontradoImpar) {
+                return true;
+            }
+        }
+        return false;
+    }
+    //13. L1.mismaFrec() : Método lógico que devuelve True,
+    // si todos los elementos tienen la misma frecuencia de aparición en la Lista L1.
 
 }

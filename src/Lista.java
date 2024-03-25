@@ -420,17 +420,25 @@ public class Lista {
 
     //Tarea2 --> es lo mismo que el lab 3 pero incluyendo 10 ejercicios de libros
 
-    //1.Obtener por posicion : Devuelve el elemento en una posicion especifica
-    public int obtenerDatoPosicion(int i) {
-        int dato = 0, j = 0;
-        while (j < this.cantElem) {
-            if (i == j){
-                dato = this.arreglo[j];
+    //1.Metodo para encontrar el elemento mas frecuente
+    public void elementoMasFrecuente() {
+        int maxFrec = 0;
+        int elem = 0;
+        for (int i = 0; i < this.cantElem; i++) {
+            int frec = 0;
+            for (int j = 0; j < this.cantElem; j++) {
+                if (this.arreglo[i] == this.arreglo[j]) {
+                    frec++;
+                }
             }
-            j++;
+            if (frec > maxFrec) {
+                maxFrec = frec;
+                elem = this.arreglo[i];
+            }
         }
-        return dato;
+        System.out.println("Elemento mas frecuente: " + elem);
     }
+
     //Dividir una lista en tres: Crea un metodo que divida una lista en tres,
     // basandose en dos indices dados
     public void dividirLista(int i, int j) {

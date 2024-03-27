@@ -4,10 +4,10 @@ public class MainLista {
         Lista lista2 = new Lista(10);
         Lista listaPrueba = new Lista(10);
 
-        lista.insertarIesimo(40, 0);
-        lista.insertarIesimo(40, 1);
-        lista.insertarIesimo(40, 2);
-        lista.insertarIesimo(10, 3);
+        lista.insertarIesimo(10, 0);
+        lista.insertarIesimo(20, 1);
+        lista.insertarIesimo(30, 2);
+        lista.insertarIesimo(40, 3);
         lista.insertarIesimo(5, 4);
         lista.insertarIesimo(1, 5);
 
@@ -22,7 +22,7 @@ public class MainLista {
         listaPrueba.pasarDigitos(546781);
         System.out.println("Lista Prueba: " + listaPrueba.toString());
 
-        lista.elementoMasFrecuente();
+        lista.dividirLista(1,3);
         //System.out.println(lista.toString());
     }
 }

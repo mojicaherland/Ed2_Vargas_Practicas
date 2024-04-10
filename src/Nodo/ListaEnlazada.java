@@ -63,6 +63,12 @@ public class ListaEnlazada {
     }
     public boolean iguales(){
         Nodo p = prim;
+        while(p != null){
+            if (p.elem != p.prox.elem){
+                return false;
+            }
+            p = p.prox;
+        }
         return true;
     }
 

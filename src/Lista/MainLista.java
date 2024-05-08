@@ -14,7 +14,6 @@ public class MainLista {
         lista.insertarIesimo(40, 3);
         lista.insertarIesimo(5, 4);
         lista.insertarIesimo(1, 5);
-
         System.out.println("Lista.Lista 1: " + lista.toString());
 
         lista2.insertarIesimo(10, 0);

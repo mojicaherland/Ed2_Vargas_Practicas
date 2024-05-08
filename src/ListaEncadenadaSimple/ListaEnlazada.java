@@ -1,4 +1,4 @@
-package Nodo;
+package ListaEncadenadaSimple;
 
 public class ListaEnlazada {
     public Nodo prim;

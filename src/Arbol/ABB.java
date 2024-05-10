@@ -1,5 +1,11 @@
 package Arbol;
 
+import org.w3c.dom.ls.LSOutput;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 public class ABB {
     public Nodo raiz;
 
@@ -154,13 +160,189 @@ public class ABB {
     }
     //Tarea 1
 
-    //1.  A1.generarElem(n, a, b) : Método que genera
-    // n elementos
-    // aleatorios enteros diferentes entre a y b inclusive.
-    private void generarElem(int n, int a, int b) {
-        for (int i = 0; i < n; i++) {
-            int x = (int) (Math.random() * (b - a + 1) + a);
-            insertar(x);
+
+    //Laboratorio 9/05/2024
+    public void elementoNivel() {
+        elementoNivel(raiz, 1);
+    }
+
+    private void elementoNivel(Nodo p, int nivel) {
+        if (p == null) {
+            return;
+        }
+        elementoNivel(p.izq, nivel + 1);
+        System.out.println(p.elem + "\t" + nivel);
+        elementoNivel(p.der, nivel + 1);
+    }
+
+    public void mostrarNivel(int nivel) {
+        LinkedList<Nodo> l1 = new LinkedList<>();
+        if (raiz == null) {
+            return;
+        }
+        l1.add(raiz);
+        while (!l1.isEmpty()) {
+            Nodo p = l1.getFirst();
+            System.out.println(p.elem);
+            if (p.izq != null) {
+                l1.add(p.izq);
+            }
+            if (p.der != null) {
+                l1.add(p.der);
+            }
+            l1.removeFirst();
+        }
+    }
+
+    public void sumaNivel() {
+        int max = this.cantidad();
+        ArrayList<Integer> l1 = new ArrayList<>();
+        for (int i = 0; i < max; i++) {
+            l1.add(0);
+        }
+        sumaNivel(raiz, 0, l1);
+        int i = 0;
+        while (l1.get(i) != 0) {
+            System.out.println(i + 1 + "\t" + l1.get(i));
+            i++;
+        }
+    }
+
+    private void sumaNivel(Nodo p, int nivel, ArrayList<Integer> l1) {
+        if (p == null) {
+            return;
+        }
+        l1.set(nivel, l1.get(nivel) + p.elem);
+        sumaNivel(p.izq, nivel + 1, l1);
+        sumaNivel(p.der, nivel + 1, l1);
+    }
+
+    //ejercicios
+    //A1.niveles(): Método que muestra los
+    // elementos del árbol A1, por niveles.
+    public void niveles() {
+        LinkedList<Nodo> l1 = new LinkedList<>();
+        if (raiz == null) {
+            return;
+        }
+        l1.add(raiz);
+        while (!l1.isEmpty()) {
+            Nodo p = l1.getFirst();
+            System.out.println(p.elem);
+            if (p.izq != null) {
+                l1.add(p.izq);
+            }
+            if (p.der != null) {
+                l1.add(p.der);
+            }
+            l1.removeFirst();
+        }
+    }
+
+    //2 A1.desc(): Método que muestra los
+    // elementos del árbol A1 de mayor a menor.
+    public void desc() {
+        desc(raiz);
+    }
+
+    private void desc(Nodo p) {
+        if (p != null) {
+            desc(p.der);
+            System.out.println(p.elem);
+            desc(p.izq);
+        }
+    }
+    //A1.seEncuentra(x) : Métodos lógico que devuelve True,
+    // si el elemento x, se encuentra en el árbol A1.
+
+    public void preoOrden(List<Integer> L1) {
+        preoOrden(raiz, L1);
+    }
+
+    private void preoOrden(Nodo p, List<Integer> L1) {
+        if (p != null) {
+            L1.add(p.elem);
+            preoOrden(p.izq, L1);
+            preoOrden(p.der, L1);
+        }
+    }
+
+    public void inOrden(List<Integer> L1) {
+        inOrden(raiz, L1);
+    }
+
+    private void inOrden(Nodo p, List<Integer> L1) {
+        if (p != null) {
+            inOrden(p.izq, L1);
+            L1.add(p.elem);
+            inOrden(p.der, L1);
+        }
+    }
+
+    public void postOrden(List<Integer> L1) {
+        postOrden(raiz, L1);
+    }
+
+    private void postOrden(Nodo p, List<Integer> L1) {
+        if (p != null) {
+            postOrden(p.izq, L1);
+            postOrden(p.der, L1);
+            L1.add(p.elem);
+        }
+    }
+
+    public void niveles(List<Integer> L1) {
+        niveles(raiz, L1);
+    }
+
+    private void niveles(Nodo p, List<Integer> L1) {
+        if (p == null) {
+            return;
+        }
+
+        LinkedList<Nodo> queue = new LinkedList<>();
+        queue.add(p);
+
+        while (!queue.isEmpty()) {
+            Nodo current = queue.poll();
+            L1.add(current.elem);
+
+            if (current.izq != null) {
+                queue.add(current.izq);
+            }
+
+            if (current.der != null) {
+                queue.add(current.der);
+            }
+        }
+    }
+
+    public void sumarNivel(List<Integer> L1) {
+        if (raiz == null) {
+            return;
+        }
+
+        LinkedList<Nodo> queue = new LinkedList<>();
+        queue.add(raiz);
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            int sum = 0;
+
+            for (int i = 0; i < size; i++) {
+                Nodo current = queue.poll();
+                sum += current.elem;
+
+                if (current.izq != null) {
+                    queue.add(current.izq);
+                }
+
+                if (current.der != null) {
+                    queue.add(current.der);
+                }
+            }
+
+            L1.add(sum);
         }
     }
 

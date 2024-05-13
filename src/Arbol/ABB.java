@@ -345,5 +345,44 @@ public class ABB {
             L1.add(sum);
         }
     }
+    // Tarea 3 - Arboles con libreria de listas
+    public int alturaMayor() {
+        return alturaMayor(raiz);
+    }
 
+    private int alturaMayor(Nodo p) {
+        if (p == null) {
+            return -1;
+        } else {
+            int izqAltura = alturaMayor(p.izq);
+            int derAltura = alturaMayor(p.der);
+            return Math.max(izqAltura, derAltura) + 1;
+        }
+    }
+    public int alturaMenor(){
+        return alturaMenor(raiz);
+    }
+    private int alturaMenor(Nodo p){
+        if (p == null){
+            return -1;
+        }else{
+            int izqAltura = alturaMenor(p.izq);
+            int derAltura = alturaMenor(p.der);
+            return Math.min(izqAltura, derAltura) + 1;
+        }
+    }
+    public void mostrarTerm() {
+        mostrarTerm(raiz);
+    }
+
+    private void mostrarTerm(Nodo p) {
+        if (p != null) {
+            if (p.izq == null && p.der == null) {
+                System.out.println(p.elem);
+            } else{
+                mostrarTerm(p.izq);
+                mostrarTerm(p.der);
+            }
+        }
+    }
 }

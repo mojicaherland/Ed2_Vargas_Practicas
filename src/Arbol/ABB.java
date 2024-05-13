@@ -385,4 +385,76 @@ public class ABB {
             }
         }
     }
+    public boolean lineal() {
+        return lineal(raiz);
+    }
+
+    private boolean lineal(Nodo p) {
+        if (p == null) {
+            return true;
+        }
+        if (p.izq != null && p.der != null) {
+            return false;
+        }
+        return lineal(p.izq) && lineal(p.der);
+    }
+    public int inmediatoSup(int x) {
+        Nodo nodoX = buscarNodo(x, raiz);
+        if (nodoX == null) {
+            return x;
+        }
+        if (nodoX.der != null) {
+            return menor(nodoX.der);
+        }
+        Nodo ancestro = raiz;
+        int inmediatoSup = x;
+        while (ancestro != nodoX) {
+            if (nodoX.elem < ancestro.elem) {
+                inmediatoSup = ancestro.elem;
+                ancestro = ancestro.izq;
+            } else {
+                ancestro = ancestro.der;
+            }
+        }
+        return inmediatoSup;
+    }
+
+    private Nodo buscarNodo(int x, Nodo p) {
+        if (p == null || p.elem == x) {
+            return p;
+        }
+        if (x < p.elem) {
+            return buscarNodo(x, p.izq);
+        } else {
+            return buscarNodo(x, p.der);
+        }
+    }
+    public int inmediatoInf(int x) {
+        Nodo nodoX = buscarNodo(x, raiz);
+        if (nodoX == null) {
+            return x;
+        }
+        if (nodoX.izq != null) {
+            return mayorInmediatoInf(nodoX.izq);
+        }
+        Nodo ancestro = raiz;
+        int inmediatoInf = x;
+        while (ancestro != nodoX) {
+            if (nodoX.elem > ancestro.elem) {
+                inmediatoInf = ancestro.elem;
+                ancestro = ancestro.der;
+            } else {
+                ancestro = ancestro.izq;
+            }
+        }
+        return inmediatoInf;
+    }
+
+    private int mayorInmediatoInf(Nodo p) {
+        if (p.der == null) {
+            return p.elem;
+        } else {
+            return mayorInmediatoInf(p.der);
+        }
+    }
 }

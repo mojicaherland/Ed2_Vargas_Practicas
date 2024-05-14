@@ -457,4 +457,78 @@ public class ABB {
             return mayorInmediatoInf(p.der);
         }
     }
+    //pregunta 26
+    //1. Método que devuelve el número de nodos hoja en el árbol: Un nodo hoja es un nodo que no tiene hijos.
+    // Este método recorrerá el árbol y contará el número de nodos hoja.
+    public int contarNodosHoja() {
+        return contarNodosHoja(raiz);
+    }
+
+    private int contarNodosHoja(Nodo p) {
+        if (p == null) {
+            return 0;
+        }
+        if (p.izq == null && p.der == null) {
+            return 1;
+        }
+        return contarNodosHoja(p.izq) + contarNodosHoja(p.der);
+    }
+    //2.Método que devuelve la altura del árbol: La altura de un árbol es la longitud
+    // del camino más largo desde la raíz hasta cualquier hoja.
+    public int altura() {
+        return altura(raiz);
+    }
+
+    private int altura(Nodo p) {
+        if (p == null) {
+            return -1;
+        }
+        return 1 + Math.max(altura(p.izq), altura(p.der));
+    }
+    //3.Método que verifica si un árbol está balanceado: Un árbol está balanceado si para cada nodo,
+    // la altura de sus dos subárboles difiere en no más de uno.
+    public boolean estaBalanceado() {
+        return estaBalanceado(raiz);
+    }
+
+    private boolean estaBalanceado(Nodo p) {
+        if (p == null) {
+            return true;
+        }
+        int alturaIzq = altura(p.izq);
+        int alturaDer = altura(p.der);
+        return Math.abs(alturaIzq - alturaDer) <= 1 && estaBalanceado(p.izq) && estaBalanceado(p.der);
+    }
+    //4.Método que devuelve el número de nodos en un nivel dado:
+    // Este método recorrerá el árbol y contará el número de nodos en un nivel específico
+    public int nodosEnNivel(int nivel) {
+        return nodosEnNivel(raiz, nivel);
+    }
+
+    private int nodosEnNivel(Nodo p, int nivel) {
+        if (p == null) {
+            return 0;
+        }
+        if (nivel == 0) {
+            return 1;
+        }
+        return nodosEnNivel(p.izq, nivel - 1) + nodosEnNivel(p.der, nivel - 1);
+    }
+    //5.Método que devuelve el espejo del árbol:
+    // Este método creará un nuevo árbol que es el espejo del árbol original.
+    public ABB espejo() {
+        ABB espejo = new ABB();
+        espejo.raiz = espejo(raiz);
+        return espejo;
+    }
+
+    private Nodo espejo(Nodo p) {
+        if (p == null) {
+            return null;
+        }
+        Nodo nuevoNodo = new Nodo(p.elem);
+        nuevoNodo.izq = espejo(p.der);
+        nuevoNodo.der = espejo(p.izq);
+        return nuevoNodo;
+    }
 }

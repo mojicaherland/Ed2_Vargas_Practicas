@@ -44,8 +44,25 @@ public class Arbol {
         }
         return p;
     }
+    public void generarElementos(int n, int a, int b) {
+        Random rand = new Random();
+        for (int i = 0; i < n; i++) {
+            int r = a + rand.nextInt(b - a + 1);
+            insertar(r);
+        }
+    }
+    public void mostrarElementosConFrecuenciaDescendente() {
+        mostrarElementosConFrecuenciaDescendente(raiz);
+    }
 
-    //LAB4
+    private void mostrarElementosConFrecuenciaDescendente(Nodo p) {
+        if (p != null) {
+            mostrarElementosConFrecuenciaDescendente(p.der);
+            System.out.println("Elemento: " + p.elem + ", Frecuencia: " + p.fre);
+            mostrarElementosConFrecuenciaDescendente(p.izq);
+        }
+    }
+
 
     public void mostrarElementosConFrecuencia() {
         mostrarElementosConFrecuencia(raiz);
@@ -58,7 +75,6 @@ public class Arbol {
             mostrarElementosConFrecuencia(p.der);
         }
     }
-
     public Arbol crearArbolPorFrecuencia() {
         Arbol nuevoArbol = new Arbol();
         crearArbolPorFrecuencia(raiz, nuevoArbol);
@@ -67,19 +83,35 @@ public class Arbol {
 
     private void crearArbolPorFrecuencia(Nodo p, Arbol nuevoArbol) {
         if (p != null) {
-            crearArbolPorFrecuencia(p.izq, nuevoArbol);
             for (int i = 0; i < p.fre; i++) {
                 nuevoArbol.insertar(p.elem);
             }
+            crearArbolPorFrecuencia(p.izq, nuevoArbol);
             crearArbolPorFrecuencia(p.der, nuevoArbol);
         }
     }
 
-    public void generarElementos(int n, int a, int b) {
-        Random rand = new Random();
-        for (int i = 0; i < n; i++) {
-            int r = a + rand.nextInt(b - a + 1);
-            insertar(r);
+    public void mostrarElementosPorFrecuenciaAscendente() {
+        mostrarElementosPorFrecuenciaAscendente(raiz);
+    }
+
+    private void mostrarElementosPorFrecuenciaAscendente(Nodo p) {
+        if (p != null) {
+            mostrarElementosPorFrecuenciaAscendente(p.izq);
+            System.out.println("Elemento: " + p.elem + ", Frecuencia: " + p.fre);
+            mostrarElementosPorFrecuenciaAscendente(p.der);
+        }
+    }
+
+    public void mostrarElementosPorFrecuenciaDescendente() {
+        mostrarElementosPorFrecuenciaDescendente(raiz);
+    }
+
+    private void mostrarElementosPorFrecuenciaDescendente(Nodo p) {
+        if (p != null) {
+            mostrarElementosPorFrecuenciaDescendente(p.der);
+            System.out.println("Elemento: " + p.elem + ", Frecuencia: " + p.fre);
+            mostrarElementosPorFrecuenciaDescendente(p.izq);
         }
     }
 }

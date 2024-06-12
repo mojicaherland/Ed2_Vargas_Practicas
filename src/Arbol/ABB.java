@@ -51,7 +51,7 @@ public class ABB {
             return;
         }
         inOrden(p.izq);
-        System.out.println(p.elem);
+        System.out.print(p.elem + " ");
         inOrden(p.der);
     }
 
@@ -345,6 +345,7 @@ public class ABB {
             L1.add(sum);
         }
     }
+
     // Tarea 3 - Arboles con libreria de listas
     public int alturaMayor() {
         return alturaMayor(raiz);
@@ -359,18 +360,21 @@ public class ABB {
             return Math.max(izqAltura, derAltura) + 1;
         }
     }
-    public int alturaMenor(){
+
+    public int alturaMenor() {
         return alturaMenor(raiz);
     }
-    private int alturaMenor(Nodo p){
-        if (p == null){
+
+    private int alturaMenor(Nodo p) {
+        if (p == null) {
             return -1;
-        }else{
+        } else {
             int izqAltura = alturaMenor(p.izq);
             int derAltura = alturaMenor(p.der);
             return Math.min(izqAltura, derAltura) + 1;
         }
     }
+
     public void mostrarTerm() {
         mostrarTerm(raiz);
     }
@@ -379,12 +383,13 @@ public class ABB {
         if (p != null) {
             if (p.izq == null && p.der == null) {
                 System.out.println(p.elem);
-            } else{
+            } else {
                 mostrarTerm(p.izq);
                 mostrarTerm(p.der);
             }
         }
     }
+
     public boolean lineal() {
         return lineal(raiz);
     }
@@ -398,6 +403,7 @@ public class ABB {
         }
         return lineal(p.izq) && lineal(p.der);
     }
+
     public int inmediatoSup(int x) {
         Nodo nodoX = buscarNodo(x, raiz);
         if (nodoX == null) {
@@ -429,6 +435,7 @@ public class ABB {
             return buscarNodo(x, p.der);
         }
     }
+
     public int inmediatoInf(int x) {
         Nodo nodoX = buscarNodo(x, raiz);
         if (nodoX == null) {
@@ -457,6 +464,7 @@ public class ABB {
             return mayorInmediatoInf(p.der);
         }
     }
+
     //pregunta 26
     //1. Método que devuelve el número de nodos hoja en el árbol: Un nodo hoja es un nodo que no tiene hijos.
     // Este método recorrerá el árbol y contará el número de nodos hoja.
@@ -473,6 +481,7 @@ public class ABB {
         }
         return contarNodosHoja(p.izq) + contarNodosHoja(p.der);
     }
+
     //2.Método que devuelve la altura del árbol: La altura de un árbol es la longitud
     // del camino más largo desde la raíz hasta cualquier hoja.
     public int altura() {
@@ -485,6 +494,7 @@ public class ABB {
         }
         return 1 + Math.max(altura(p.izq), altura(p.der));
     }
+
     //3.Método que verifica si un árbol está balanceado: Un árbol está balanceado si para cada nodo,
     // la altura de sus dos subárboles difiere en no más de uno.
     public boolean estaBalanceado() {
@@ -499,6 +509,7 @@ public class ABB {
         int alturaDer = altura(p.der);
         return Math.abs(alturaIzq - alturaDer) <= 1 && estaBalanceado(p.izq) && estaBalanceado(p.der);
     }
+
     //4.Método que devuelve el número de nodos en un nivel dado:
     // Este método recorrerá el árbol y contará el número de nodos en un nivel específico
     public int nodosEnNivel(int nivel) {
@@ -514,6 +525,7 @@ public class ABB {
         }
         return nodosEnNivel(p.izq, nivel - 1) + nodosEnNivel(p.der, nivel - 1);
     }
+
     //5.Método que devuelve el espejo del árbol:
     // Este método creará un nuevo árbol que es el espejo del árbol original.
     public ABB espejo() {
@@ -532,4 +544,179 @@ public class ABB {
         return nuevoNodo;
     }
 
+    public void eliminar(int x) {
+        this.raiz = eliminar(x, raiz);
+    }
+
+    public Nodo eliminar(int x, Nodo p) {
+        if (p == null) {
+            return null;
+        }
+        if (x == p.elem) {
+            return eliminarNodo(p);
+        }
+        if (x < p.elem) {
+            p.izq = eliminar(x, p.izq);
+        } else {
+            p.der = eliminar(x, p.der);
+        }
+        return p;
+    }
+
+    public Nodo eliminarNodo(Nodo p) {
+        if (p.izq == null && p.der == null) {
+            return null;
+        }
+        if (p.izq != null && p.der == null) {
+            return p.izq;
+        }
+        if (p.izq == null && p.der != null) {
+            return p.der;
+        }
+        Nodo q = p.izq;
+        while (q.der != null) {
+            q = p.der;
+        }
+        int y = q.elem;
+        eliminar(y);
+        p.elem = y;
+        return p;
+    }
+    //Lab7 04/06/2024 arboles binarios de busqueda eliminar
+
+    /*
+     * A1.eliminarSup(x) : Método que elimina el elemento x,
+     *  del árbol A1. Si el elemento a eliminar es un nodo raíz,
+     * buscar el elemento inmediato Superior, para eliminar.
+     * */
+    public void eliminarSup(int x) {
+        Nodo nodoX = buscarNodo2(x, raiz);
+        if (nodoX == null) {
+            return;
+        }
+        if (nodoX == raiz) {
+            if (raiz.der != null) {
+                int inmediatoSup = menor2(raiz.der);
+                eliminar(inmediatoSup);
+                raiz.elem = inmediatoSup;
+            } else {
+                raiz = raiz.izq;
+            }
+        } else {
+            eliminar(x);
+        }
+    }
+
+    private int menor2(Nodo p) {
+        if (p.izq == null) {
+            return p.elem;
+        } else {
+            return menor2(p.izq);
+        }
+    }
+
+    private Nodo buscarNodo2(int x, Nodo p) {
+        if (p == null || p.elem == x) {
+            return p;
+        }
+        if (x < p.elem) {
+            return buscarNodo2(x, p.izq);
+        } else {
+            return buscarNodo2(x, p.der);
+        }
+    }
+    //2
+    public void eliminarInf(int x) {
+        Nodo nodoX = buscarNodo2(x, raiz);
+        if (nodoX == null) {
+            return;
+        }
+        if (nodoX == raiz) {
+            if (raiz.izq != null) {
+                int inmediatoInf = mayor(raiz.izq);
+                eliminar(inmediatoInf);
+                raiz.elem = inmediatoInf;
+            } else {
+                raiz = raiz.der;
+            }
+        } else {
+            eliminar(x);
+        }
+    }
+
+    private int mayor2(Nodo p) {
+        if (p.der == null) {
+            return p.elem;
+        } else {
+            return mayor2(p.der);
+        }
+    }
+    //3
+    public void eliminarHojas() {
+        raiz = eliminarHojas(raiz);
+    }
+
+    private Nodo eliminarHojas(Nodo p) {
+        if (p == null) {
+            return null;
+        }
+        if (p.izq == null && p.der == null) {
+            return null;
+        }
+        p.izq = eliminarHojas(p.izq);
+        p.der = eliminarHojas(p.der);
+        return p;
+    }
+    //
+    public void eliminarPares() {
+        raiz = eliminarPares2(raiz);
+    }
+
+    private Nodo eliminarPares2(Nodo p) {
+        if (p == null) {
+            return null;
+        }
+        p.izq = eliminarPares2(p.izq);
+        p.der = eliminarPares2(p.der);
+        if (p.elem % 2 == 0) {
+            p = eliminarNodo(p);
+        }
+
+        return p;
+    }
+    //5
+    public void eliminar(List<Integer> L1) {
+        for (int x : L1) {
+            eliminar(x);
+        }
+    }
+    public void eliminarMenor() {
+        raiz = eliminarMenor(raiz);
+    }
+
+    private Nodo eliminarMenor(Nodo p) {
+        if (p == null) {
+            return null;
+        }
+        if (p.izq == null) {
+            return p.der;
+        }
+        p.izq = eliminarMenor(p.izq);
+        return p;
+    }
+    //7
+    public void eliminarMayor() {
+        raiz = eliminarMayor(raiz);
+    }
+
+    private Nodo eliminarMayor(Nodo p) {
+        if (p == null) {
+            return null;
+        }
+        if (p.der == null) {
+            return p.izq;
+        }
+        p.der = eliminarMayor(p.der);
+        return p;
+    }
 }

@@ -2,7 +2,12 @@ package Grafos;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hola mundo");
-        System.out.println("hola mundo");
+        Grafo g1 = new Grafo();
+
+        g1.insertarNodo("A");
+        g1.insertarNodo("B");
+        g1.insertarArco("A", "B", 2);
+        g1.insertarArco("D", "E", 1);
+
     }
 }
